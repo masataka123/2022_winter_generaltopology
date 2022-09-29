@@ -33,7 +33,7 @@
 
 - 第2回 (2022/10/11). 位相空間 [第2回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/2_位相空間.pdf) 
 
-- 第3回 (2022/10/18). 連続写像 [第3回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/_連続写像.pdf) 
+- 第3回 (2022/10/18). 連続写像 [第3回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/3_連続写像.pdf) 
 
 - 第4回 (2022/10/25). 開基と基本近傍系 [第4回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/4_開基と基本近傍系.pdf) 
 
@@ -78,7 +78,7 @@
 # 問題集・まとめノートに関して
 
 - 問題集・まとめノートはダウンロードした方が良いかと思います.
-- もし資料を一括してダウンロードしたい場合は[こちらのページ](https://github.com/masataka123/2022_winter_generaltopology/tree/main/material)をご覧ください.
+- もし資料を一括してダウンロードしたい場合は[こちらのページ](https://github.com/masataka123/2022_winter_generaltopology/tree/master/material)をご覧ください.
 - 著作権は岩井雅崇にあります. 
 - 問題集・まとめノート等に関して何か問題があった場合(例: 何らかの問題でダウンロードできない, 文字化けしている), メールにて私にご連絡していただければ幸いです.
 
