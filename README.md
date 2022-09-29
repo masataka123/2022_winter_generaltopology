@@ -28,14 +28,14 @@
 適宜休講あるいは補講をすることがあるので, こまめにホームページとCLEは確認してください. 
 
 - 第1回 (2022/10/04). ガイダンス・距離空間の復習
-[ガイダンス資料](https://github.com/masataka123/2022_winter_generaltopology/blob/main/material/0_ガイダンス資料.pdf) 
-[第1回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/main/material/1_距離空間.pdf) 
+[ガイダンス資料](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/0_ガイダンス資料.pdf) 
+[第1回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/1_距離空間.pdf) 
 
-- 第2回 (2022/10/11). 位相空間 [第2回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/main/material/2_位相空間.pdf) 
+- 第2回 (2022/10/11). 位相空間 [第2回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/2_位相空間.pdf) 
 
-- 第3回 (2022/10/18). 連続写像 [第3回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/main/material/3_連続写像.pdf) 
+- 第3回 (2022/10/18). 連続写像 [第3回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/_連続写像.pdf) 
 
-- 第4回 (2022/10/25). 開基と基本近傍系 [第4回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/main/material/4_開基と基本近傍系.pdf) 
+- 第4回 (2022/10/25). 開基と基本近傍系 [第4回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/4_開基と基本近傍系.pdf) 
 
 - 第5回 (2022/11/01). 
 
@@ -63,7 +63,7 @@
 
 集合と位相の授業がどのような内容で行うかわかりませんが, とりあえず「内田伏一著集合と位相」の第4章から第9章までまとめました. (10年ぶりに集合と位相の深い内容に触れたので自分の復習用に作りました). 理解のために活用していただければ幸いです.
 
-[集合と位相のまとめノート](https://github.com/masataka123/2022_winter_generaltopology/blob/main/material/0_集合と位相まとめ.pdf) 
+[集合と位相のまとめノート](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/0_集合と位相まとめ.pdf) 
 
 
 <!-- 
