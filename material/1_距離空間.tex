@@ -1,0 +1,200 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+
+\begin{center}
+{\Large 1.距離空間の復習}
+\end{center}
+\begin{flushright}
+ 岩井雅崇 2022/10/04
+\end{flushright}
+
+\begin{enumerate}[label=\textbf{問}1.\arabic*]
+\item 正の自然数$n$について$\R^{n+1}$の部分集合$S^n$を
+$$
+S^n = \{ (x_1, \ldots, x_{n+1}) \in \R^{m+1} \, |\,\sum_{i=1}^{n+1} x_{i}^{2} =1\}
+$$
+と定める. $S^n$は$\R^{n+1}$の有界閉集合であることを示せ.
+\item 閉区間 [a,b]とし, 
+$$
+B[a,b]:= \{f | \text{ $f$ は$[a,b]$上の実数値有界関数} \}
+$$
+とし$f,g \in B[a,b]$について
+$$
+d(f,g) := \sup_{x \in [a,b]} \{ |f(x) - g(x)|\}
+$$
+と定める.  $(B[a,b],d)$が距離空間であることを示せ.
+
+
+ \item  実数列$x = \{ x_n\}_{n=1}^{\infty}$で$\sum_{i=1}^{\infty} x_{i}^{2} < \infty$となるものの集合を$l^2$とする.
+ $x,y \in l^2$について
+ $$
+ d(x,y) = \sqrt{ \sum_{i=1}^{\infty} (x_i - y_i)^2}
+ $$
+ と定める. $d$がwell-definedであることを示し\footnote{$\sum_{i=1}^{\infty} (x_i - y_i)^2$がなぜ収束するのかを示してください.}, $(l^2,d)$は距離空間となることを示せ. (この空間はHilbert空間と呼ばれる.)
+ 
+
+  
+ \item 距離空間$(X,d)$とその部分集合$A \subset X$において次を示せ.
+	 \begin{enumerate}
+ 	\item $A$の内部$A^i$は$A$に含まれる最大の開集合である.
+ 	\item $A$の閉包$\overline{A}$は$A$を含む最小の閉集合である.
+ 	\end{enumerate}
+ ここで$A^i$は$A$の内点の集合とし, $\overline{A}$は$A$の触点の集合とする.
+ また$A$が開集合であるとは$A = A^i$となることとし$A$が開集合であるとは$A = \overline{A}$となることとする.(教科書4章の定義通りとする.)
+ 
+\item $d,d'$を$X$上の距離関数とする. 
+	\begin{enumerate}
+	\item ある正の数$C>0$があって任意の$x,y \in X$について$d(x,y) \leqq Cd'(x,y)$ならば, 恒等写像$id : (X, d') \rightarrow (X,d)$は連続であることを示せ.
+	\item $(X,d)$における開集合全体の集合を$\mathscr{O}_d$とし, $(X',d')$における開集合全体の集合を$\mathscr{O}_{d'}$とする. ある正の数$C>0$があって, $C^{-1} d'(x,y)\leqq d(x,y) \leqq Cd'(x,y)$ならば, $\mathscr{O}_d = \mathscr{O}_{d'}$であることを示せ.
+	%\item (a)の逆は成り立つか. 真である場合は証明し, 偽である場合は反例をあげよ.
+	\end{enumerate}
+
+%\item $d$を$\R$のユークリッド距離とし, $f : \R \rightarrow \R$を写像とする. 次は同値であることを示せ.
+%	\begin{enumerate}
+%	\item $f$は(距離空間の意味で)連続
+%	\item 任意の$a \in \R$と任意の$\epsilon>0$についてある$\delta >0$が存在し, $|x-a| < \delta$ならば$|f(x)- f(a)| < \epsilon$. ($\epsilon-\delta$論法)
+%	\end{enumerate}
+
+  \item $A$を距離空間$X$の部分集合とするとし, $f : X \rightarrow \R$を$f(x) =d(x,A)$で定める. $f$は連続であることを示せ.
+  
+  
+  \item 任意の空でない集合$X$について, ある距離関数$d$があって$(X,d)$は距離空間になることをしめせ.
+  %Show that for any non-empty set $X$ there exists some distance function $d$ on $X$ such that $(X,d)$ is a metric space.
+  
+    \item $^{*}$\label{Hausdorff} $(X,d)$を距離空間とする. $X$の部分集合$A$が有界であるとは, ある正の数$M$があって任意の$x, y \in A$について$d(x,y) \leqq M$であることとする. $\mathcal{B}(X)$を$X$の有界閉集合全体の集合とする. 次の問いに答えよ.
+    \begin{enumerate}
+    	\item $A,B \in \mathcal{B}(X)$について$\sup_{x \in A}d(x,B) < + \infty$であることを示せ.\footnote{$d(x,B) = \inf_{y \in B} d(x,y)$である.}
+	\item $A,B \in \mathcal{B}(X)$について
+	$$
+	d_{H}(A,B) = \max \{ \sup_{x \in A}d(x,B), \sup_{y  \in B}d(A,y)\}
+	$$
+	とする. 任意の$x \in X$について
+	$$
+	d(x,A) \leqq d(x,B) + d_{H}(A,B) 
+	$$
+	が成り立つことを示せ. 
+    \end{enumerate}
+\item $^{*}$ \ref{Hausdorff}での$(\mathcal{B}(X), d_{H})$は距離空間になることを示せ. (これはハウスドルフ距離と呼ばれる.)
+ %任意の空でない集合$X$について, ある距離関数$d$があって, $(X,d)$は距離空間になることを示せ. 
+ \end{enumerate}
+
+ \begin{comment}
+ ボツ問題集 
+ \item 距離空間$(X,d)$とその部分集合$A \subset X$において, 次は同値であることを示せ.
+ \begin{enumerate}
+ \item $A$は閉集合である.
+ \item $A^{c}$は開集合である.
+  \end{enumerate}
+ ここで$A$が開集合であるとは$A = A^i$となることとし$A$が開集合であるとは$A = \overline{A}$となることとする.
+\item 
+	\begin{enumerate}
+	\item $(X,d)$を距離空間とし, $\mathscr{O}$を開集合全体の集合とする.このとき次が成り立つことを示せ.
+    		\begin{enumerate}
+    		\item $X \in \mathscr{O}, \varnothing \in \mathscr{O}$.
+    		\item $O_1, \ldots, O_n \in \mathscr{O}$ならば$O_1 \cap \cdots \cap O_n \in \mathscr{O}$.
+    		\item $\{ O_{\lambda} \}_{\lambda \in \Lambda }$を$\mathscr{O}$の元からなる集合系とすると$\cup_{ \lambda \in \Lambda  }O_{\lambda} \in \mathscr{O}$
+    	\end{enumerate}
+	\item $(X,d)$を距離空間とし, $\mathfrak{A}$を閉集合全体の集合とする. このとき次が成り立つことを示せ.
+    		\begin{enumerate}
+   		 \item $X \in \mathfrak{A}, \varnothing \in \mathfrak{A}$.
+    		\item $A_1, \ldots, A_n \in \mathscr{O}$ならば$A_1 \cup \cdots \cup A_n \in \mathfrak{A}$.
+    		\item $\{ A_{\lambda} \}_{\lambda \in \Lambda}$を$\mathfrak{A}$の元からなる集合系とすると
+   		 $\cup_{ \lambda \in \Lambda  }A_{\lambda} \in \mathfrak{A}$
+    		\end{enumerate}
+	\end{enumerate}
+
+\item
+距離空間の間の写像$f : (X, d_X) \rightarrow (Y, d_Y)$について次は同値であることを示せ.
+ 	\begin{enumerate}
+ 	\item 点$a \in X$で連続
+ 	\item 任意の$\epsilon>0$についてある$\delta >0$が存在し, $f^{-1}(N(f(a), \epsilon))$が$a$の近傍である.
+	\item 任意の$f(a)$の近傍$V$について$f^{-1}(V)$は$a$の近傍である. 
+ 	%\item 任意の$V\in \mathfrak{N}(f(a))$について$f^{-1}(V) \in \mathfrak{N}(f(a))$
+  	\end{enumerate}
+
+  \end{comment}
+
+ \end{document}

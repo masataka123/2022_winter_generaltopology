@@ -1,0 +1,197 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+\begin{center}
+{\Large 4.開基と基本近傍系}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/10/25
+\end{flushright}
+
+\begin{enumerate}[ label=\textbf{問}4.\arabic*]
+
+
+\item $\R$について次の集合系$\mathscr{B}_u$, $\mathscr{B}_l$を考える
+$$
+\mathscr{B}_u = \{(a,b]| a,b \in \R, a<b\} \,\,,\,\,
+\mathscr{B}_l = \{[a,b)| a,b \in \R, a<b\}
+$$
+次の問いに答えよ.
+	\begin{enumerate}
+	\item $\mathscr{B}_u $を開基とする$\R$上の位相$\mathscr{O}_u$が存在することを示せ. この位相を\underline{上限位相}という.
+	\item $\mathscr{B}_l$を開基とする$\R$上の位相$\mathscr{O}_l$が存在することを示せ. この位相を\underline{下限位相}という.
+	\item $(0,1]$は上限位相において開集合であることを示せ. また下限位相において開集合であるかどうか判定せよ.
+	\item $(0,1]$は上限位相において閉集合であることを示せ. また下限位相において閉集合であるかどうか判定せよ.
+	\end{enumerate}
+\item 引き続き上の下限位相上限位相について次の問いに答えよ.
+	\begin{enumerate}
+	\item 上限位相および下限位相は, ユークリッド位相$\mathscr{O}_{Euc}$よりも真に強いことを示せ.
+	\item 上限位相と下限位相の両方より強い位相は離散位相に限ることを示せ.
+	\end{enumerate}
+
+\item 距離空間$(X,d)$に関して
+$$\mathscr{B} = \{ N(a,\epsilon) | a \in X, \epsilon >0, \epsilon \in \Q\}
+$$
+は開基となることを示せ.
+\item 準開基だが開基でない例を構成せよ.
+\item 位相空間$(X, \mathscr{O})$とし, $\mathscr{S} \subset \mathscr{O}$を部分集合とする.
+$\mathscr{S}$が生成する位相を$\mathscr{O}_{\mathscr{S}}$とするとき, $\mathscr{O}_{\mathscr{S}} \subset \mathscr{O}$であることを示せ. (特に$\mathscr{O}_{\mathscr{S}}$は$\mathscr{S}$を含む最小の位相である.)
+
+%\item 位相空間$(X, \mathscr{O})とし$\mathscr{B}$を開基とする. $x \in X$について$\mathfrak{B}(x) = \{ B | x \in B, B \in \mathscr{B}\}$ とするとき$\mathfrak{B}(x)$は基本近傍系となることを示せ.
+
+\item 次を示せ.
+	\begin{enumerate}
+	\item 第2可算公理を満たすならば第1可算公理を満たす.
+	\item 第2可算公理を満たすならば可分である.
+	\end{enumerate}
+
+\item 次を示せ.	
+	\begin{enumerate}
+	\item 距離空間は第1可算公理を満たす.
+	\item 可分な距離空間は第2可算公理を満たす
+	\end{enumerate}
+
+	
+\item  %次を示せ. Lrt $$
+	\begin{enumerate}
+	%\item Show that $\Q$ is dense set on $(\R, \mathscr{O})$, where $\mathscr{O}$ is a  Euclidean topology of $\R$.
+	%\item Give an example of a topological space $(X, \mathscr{O})$ such that any open set is dense on $X$ and $\mathscr{O}$ is not indiscrete topology.
+	\item $\Q$は$\R$上で稠密であることを示せ.
+	\item 密着位相以外で, 空集合を除く任意の開集合が稠密であるような位相空間の例をあげよ.
+	\end{enumerate}
+	
+\item $^{*}$ 次の問いに答えよ.
+	\begin{enumerate}
+	\item 第1可算公理を満たすが可分でない例をあげよ
+	\item 可分であるが第1可算公理を満たさない例をあげよ
+	\end{enumerate}
+\item  $^{*}$ 次の問いに答えよ.	
+	\begin{enumerate}
+	\item 可分でない距離空間の例をあげよ．
+	\item 第2可算公理を満たすが距離空間でない例をあげよ.
+	\end{enumerate}
+\item  $^{*}$ $\R^2$において
+$$
+\mathscr{B} = \{(a,b] \times (c,d]| a,b,c,d \in \R, a<b, c<d\} 
+$$
+を開基とする位相$\mathscr{O}$を入れる.
+次の問いに答えよ. 
+	 \begin{enumerate}
+	\item $(\R^2,\mathscr{O})$は第1可算公理を満たし, 可分であることを示せ.
+	\item $ A=\{ (x,y)\in \R^2 | x+y=1\}$とし, $A$に$(\R^2,\mathscr{O})$の相対位相$\mathscr{O}_A$を入れる. このとき$\mathscr{O}_A$は離散位相であることをしめせ. また$A$は可分でないことを示せ.
+	\item $(\R^2,\mathscr{O})$は第2可算公理を満たさないことを示せ.
+	\end{enumerate}
+\item  $^{*}$ 整数の集合$\Z$と$a,b \in \Z$について$
+a\Z + b := \{ ax + b | x \in \Z\}$と定め
+$$
+\mathscr{B} = \{ a\Z + b | a,b\in \Z \} 
+$$
+とおく. 次の問いに答えよ. 
+	\begin{enumerate}
+	\item $\mathscr{B}$を開基とする位相$\mathscr{O}$が存在することを示せ. (この位相はFurstenberg 位相と呼ばれる). 以下$(\Z,\mathscr{O} )$という位相空間で開集合や閉集合を考える. 
+	\item 空でない有限集合は$(\Z, \mathscr{O})$上で開集合ではないことを示せ. 
+	\item 任意の$a,b \in \Z$について$a\Z + b$は$(\Z, \mathscr{O})$上で開集合かつ閉集合であることを示せ.
+	\item 素数全体の集合を$\mathcal{P}$とする.
+	$$\Z \setminus \{ \pm 1\} = \bigcup_{p \in \mathcal{P}} p\Z$$
+	であることを示せ.
+	\item $\mathcal{P}$が無限集合であることを示せ. つまり素数は無限個存在する.
+	\end{enumerate}
+
+
+\item  $^{*}$ これまで出てきた位相空間の例以外で面白い位相空間の例をあげよ. ただし以下の点に注意すること.
+	\begin{enumerate}
+	\item この問題は教官とTAが「面白い」と思わない場合, 正答とならない. (例えば$\{ 0,1,2\}$に適当な部分集合を使った位相空間はよく見るので正答とはならない.)
+	\item この問題は複数人が解答して良い.
+	\item この問題の解答権は2022年10月中とする. 11月以後はこの問題に答えることはできない. 
+	\end{enumerate}
+
+ \end{enumerate}
+
+
+
+
+
+ \end{document}

@@ -1,0 +1,196 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+
+
+\begin{center}
+{\Large 2.位相空間}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/10/11
+\end{flushright}
+\begin{enumerate}[ label=\textbf{問}2.\arabic*]
+\item $X = \{ 0,1\}, \mathscr{O} = \{ \varnothing, X, \{0\} \}$とするとき$(X, \mathscr{O})$は位相空間になることを示せ.
+
+\item $X = (0,1)$とし, 
+$$
+\mathscr{O} = \left\{ \left(0,1 - \frac{1}{n}\right)| n \in \N, n \geqq 2 \right\} \cup \{ X,\varnothing \}
+$$
+とする. $(X, \mathscr{O})$は位相空間になることを示せ.
+
+\item (補有限位相)
+$\R$に関して部分集合の族$\mathscr{O}_c \subset \mathfrak{P}(\R)$を次で定める.
+$$
+\mathscr{O}_c = \{V \subset \R | \text{$\R \setminus V$は有限集合である} \} \cup \{  \varnothing  \}
+$$
+次の問いに答えよ.
+	\begin{enumerate}
+	\item $(\R,\mathscr{O}_c)$は位相空間になることを示せ.
+	\item $\R$のユークリッド位相を$\mathscr{O}_{Euc}$とするとき$\mathscr{O}_c  \subset \mathscr{O}_{Euc}$を示せ. 
+	\item $A \in \mathscr{O}_{Euc}$かつ$A \not \in \mathscr{O}_c$なる$A$の例を一つあげよ.
+	\end{enumerate}
+	
+\item (上半連続位相) $\R$に関して部分集合の族$\mathscr{O}_{usc} \subset \mathfrak{P}(\R)$を次で定める.
+$$
+\mathscr{O}_{usc} = \{(- \infty,t) | t \in \R \} \cup \{  \varnothing , \R \}
+$$
+次の問いに答えよ.
+	\begin{enumerate}
+	\item $(\R,\mathscr{O}_{usc})$は位相空間になることを示せ.
+	\item $\{ 0\}$は $(\R,\mathscr{O}_{usc})$での閉集合ではないことをしめせ. 
+	\end{enumerate}
+	
+\item $\R$に関して部分集合の族$\mathscr{O}_{sc} \subset \mathfrak{P}(\R)$を次で定める.
+$$
+\mathscr{O}_{sc}  = \{U \cup A \subset \R | \text{$U$はユークリッド位相に関する開集合, $A$は$\R \setminus \Q$の部分集合}\}
+$$
+次を示せ.
+	\begin{enumerate}
+	\item $(\R,\mathscr{O}_{sc} )$は位相空間になることを示せ.
+	\item $\{ 0\}$は $(\R,\mathscr{O}_{sc} )$での開集合かつ閉集合であることを示せ.
+	\end{enumerate}
+	
+\item (Fortissimo Space) $X = \R \cup \{ \infty \}$とし\footnote{$\infty$は$\R$の元ではないことに注意する. $\infty$という記号が嫌な場合は$\infty$を$\R$に含まれない元だと思ってください.}
+$$
+\mathscr{O}_{F}= \{ V \subset X | \text{$V$は高々可算集合, または$\infty \in V$}\}
+$$
+とおくと$(X, \mathscr{O}_{F})$は位相空間になることを示せ.
+
+\item 位相空間$(X, \mathscr{O})$で距離化可能でないものの例をあげよ.\footnote{つまり「ある距離$d$があってその位相が$\mathscr{O}$となる」ということがない例を挙げてください.}
+
+
+\item $\R$にユークリッド位相$\mathscr{O}_{Euc}$をいれる. $X = (0,1) \cup (2,3]$とし, $X$に$\R$の部分位相を入れる. このとき$(2,3]$は$X$上の開集合かつ閉集合であることを示せ. 
+
+\item $\R$にユークリッド位相$\mathscr{O}_{Euc}$をいれる. $A=\Q$について$A^{i},\overline{A}$を求めよ.
+
+\item $\R$にユークリッド位相$\mathscr{O}_{Euc}$をいれる. 次の問いに答えよ.
+	\begin{enumerate}
+	\item $A=\Q$とし, $A$に相対位相$\mathscr{O}_{A}$を入れる. $\{ 0\}$は$A$の開集合かどうか判定せよ. 
+	\item $\{ 0\}$は$A$の閉集合かどうか判定せよ.
+	\item $\R$の部分集合$B$で, $B$は無限集合であり, $(B, \mathscr{O}_{B})$上において$\{ 0\}$が開集合かつ閉集合となる例を一つあげよ. ここで$\mathscr{O}_{B}$は相対位相とする.
+	\end{enumerate}
+	
+\item $(X, \mathscr{O})$を位相空間とし, $A$を$X$の部分集合とする. 次を示せ. 
+% Let $(X, \mathscr{O})$ be a topological space and $A$ be a subset of $X$. Show that 
+	\begin{enumerate}
+	\item $(A^c)^a = (A^i)^c$;
+	\item $(A^c)^i = (A^a)^c$.
+	\end{enumerate}
+
+
+
+
+\item $^{*}$ 位相空間$(X, \mathscr{O})$とその部分集合$A,B \subset X$を考える. 次の主張に関して, 真である場合は証明し, 偽である場合は反例をあげよ.
+	\begin{enumerate}
+	\item $(A \cap B)^i = A^i \cap B^i$
+	\item $(A \cup B)^i = A^i \cup B^i$
+	\item $(A \cap B)^a= A^a\cap B^a$
+	\item $(A \cup B)^a = A^a\cup B^a$
+	\end{enumerate}
+
+\item  $^{*}$ $A,A^{i},\overline{A}, \overline{A^i}, {(\overline{A})}^i, {\overline{(A^i)}}^i, \overline{({\overline{A}}^i)}$が全て違うような$A$の例をあげよ.
+ここで$\overline{A^i}$は$A$の内部の閉包, 
+${(\overline{A})}^i$は$A$の閉包の内部, ${\overline{(A^i)}}^i$は$A$の内部の閉包の内部, $\overline{({\overline{A}}^i)}$は$A$の閉包の内部の閉包である.
+\item $^{*}$ (Zariski位相)
+$\Z$を整数の集合とする. 素数$p$について
+$$(p) := \{ a \in \Z | \text{ある$b \in \Z$があって$a =bp$}\} \subset \Z$$
+とし, $Spec(\Z) := \{(p) | \text{$p$は素数} \}$とする.
+また整数$n$について
+$$
+V_{n} := \{ (p) \in Spec(\Z) | n\in (p)\} \subset Spec(\Z) 
+$$
+と定義し, $\mathfrak{A} := \{V_{n} | n \in \Z \} \subset \mathfrak{P}(Spec(\Z) ) $とおく.
+このとき$\mathfrak{A}$は閉集合の公理を満たし$(Spec(\Z), \mathfrak{A})$は位相空間になることを示せ.
+
+
+ \end{enumerate}
+ 
+\newpage
+
+
+
+
+ \end{document}

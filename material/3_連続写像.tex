@@ -1,0 +1,185 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+
+\begin{center}
+{\Large 3.連続写像}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/10/18
+\end{flushright}
+
+\begin{enumerate}[ label=\textbf{問}3.\arabic*]
+
+%\item $\R$にいろんな位相を入れて恒等写像が連続かどうか見る. 大きい位相と小さい位相.
+\item $(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$を位相空間とし, $f : X \rightarrow Y$を写像とする. 次の問いに答えよ．
+	\begin{enumerate}
+	\item $\mathscr{O}_X $が離散位相ならば$f$は連続である.
+	\item $\mathscr{O}_Y $が密着位相ならば$f$は連続である.
+	\end{enumerate}
+
+\item 次を示せ.
+ 	\begin{enumerate}
+	\item $(a,b)$と$(c,d)$は同相である.  
+	\item $(a,b)$と$\R$は同相である. 
+	\item $[a,b]$と$[c,d]$は同相である. 
+	\end{enumerate}	
+	
+\item $f : \R \rightarrow \R$を次で定める．
+   $$
+  f(x)= \begin{cases}
+     x& (x \leqq 0) \\
+    x+2& (x >0)
+  \end{cases}
+  $$
+  $\mathscr{O}_{Euc}$を$\R$における通常の位相(ユークリッド位相)とし$\mathscr{O}_c$を補有限位相とする. 次の問いに答えよ.
+ 	\begin{enumerate}
+	\item $f $は$(\R, \mathscr{O}_{Euc})$から$(\R, \mathscr{O}_{Euc})$への連続写像かどうか判定せよ.
+	\item $f $は$(\R, \mathscr{O}_{Euc})$から$(\R, \mathscr{O}_c)$への連続写像かどうか判定せよ.
+	\item $f $は$(\R, \mathscr{O}_c)$から$(\R, \mathscr{O}_{Euc})$への連続写像かどうか判定せよ.
+	\item $f $は$(\R, \mathscr{O}_c)$から$(\R, \mathscr{O}_c)$への連続写像かどうか判定せよ.
+	\end{enumerate}
+
+\item $C([0,1])$を$[0,1]$上の連続関数全体の集合とする. $C([0,1])$上に距離$d$を
+$$
+d(f,g) := \sup_{x \in [0,1]} | f(x) - g(x)|
+$$
+で定める. また$\R$にユークリッド位相を入れる.
+	\begin{enumerate}
+	\item $C([0,1], d)$は距離空間であることを示せ.
+	\item $F : C([0,1]) \rightarrow \R$を$F(f) := \int_{0}^{1} f(x) dx$で定める. $F$は連続であることを示せ.
+	\item $G : C([0,1]) \rightarrow \R$を$G(f) := \int_{0}^{1} f(x)^2 dx$で定める. $G$は連続であることを示せ.
+	\end{enumerate}
+
+\item $(X, \mathscr{O})$を位相空間とし, $\R$にユークリッド位相を入れる. $f,g :  X \rightarrow \R$を$X$から$\R$への連続写像とするとき, $f +g, f-g, \alpha f, f/g$は$X$から$\R$への連続写像となることを示せ. ここで$\alpha \in \R$であり, $f/g$は$g(x)=0$となる$x \in X$が存在しないときに定義される. 
+
+
+
+ \item 全単射な連続写像$f :  X \rightarrow Y$で$f^{-1}$が連続ではないものを構成せよ. 
+ %Give an example of topological spaces $(X, \mathscr{O}_X )$ and  $(Y, \mathscr{O}_Y)$ that satisfies the following conditions:
+ 
+%次の(a)-(b)を満たす位相空間$(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$の例を一つあげよ.\footnote{これは連続全単射は同相とは限らない例である.}
+% 	\begin{enumerate}
+%	\item 全単射な連続写像$f :  X \rightarrow Y$がある. %There exists a continuous map $f : X \rightarrow Y$.
+	%\item $f$は全単射である. %$f$ is bijective.
+%	\item $f^{-1}$は連続ではない. %$f^{-1}$ is not continuous.
+%	\end{enumerate}
+	
+
+\item $f : \R \rightarrow \R$を写像とし, $\mathscr{O}_{Euc}$をユークリッド位相, $\mathscr{O}_{usc}$を上半連続位相(問2.5の位相)とする. $f$を$(\R, \mathscr{O}_{usc})$から$(\R, \mathscr{O}_{Euc})$への連続写像とするとき, $f$は定数写像であることを示せ.
+
+\item $^*$ $f : \R \rightarrow \R$を写像とし, $\mathscr{O}_{Euc}$をユークリッド位相, $\mathscr{O}_{usc}$を上半連続位相(問2.5の位相)とする. 次は同値であることを示せ.
+	\begin{enumerate}
+	\item $f$は$(\R, \mathscr{O}_{Euc})$から$(\R, \mathscr{O}_{usc})$への連続写像である.
+	\item 任意の$a \in \R$について$\limsup_{x \rightarrow a} f(x) =f(a)$である.
+	\end{enumerate}
+ 
+ \item$^*$  $(X, \mathscr{O}_X)$,$(Y, \mathscr{O}_Y)$を位相空間とし, $A,B$を$X$の部分集合で$X = A \cup B$となるものとする.
+ 
+ $f : X \rightarrow Y$を$(X, \mathscr{O}_X)$から$(Y, \mathscr{O}_Y)$への連続写像とし, $f_{A}: A \rightarrow Y, f_{B}: B \rightarrow Y$をそれぞれ$f$の$A, B$ への制限とする. 
+ 次の問いに答えよ.
+	\begin{enumerate}
+	\item $A,B$が閉集合であり, $f_A,f_B$がそれぞれ$A,B$に関して連続であるとき, $f$も連続であることを示せ. ここで$A,B$には$X$の相対位相を入れる.
+	\item $f_A,f_B$がそれぞれ$A,B$に関して連続だが, $f$は連続ではない例をあげよ.
+	\end{enumerate}
+
+	
+\item $^*$  $(X, \mathscr{O})$を位相空間とする.
+$X$の点列$\{ x_n\}_{n =1}^{\infty}$が点$x\in X$に収束するとは, 「任意の$x$の近傍$V$についてある$N \in \N$があって$N<n$ならば$x_n \in V$である」ことで定義をする.次の問いに答えよ
+ 	\begin{enumerate}
+	\item 位相空間$(X, \mathscr{O})$で次を満たすものを構成せよ．
+		\begin{enumerate}
+		\item $(X, \mathscr{O})$は密着位相ではない.
+		\item ある点$a \in X$があって, 任意の$X$の点列$\{ x_n\}_{n =1}^{\infty}$は$a$に収束する.
+		\end{enumerate}
+	\item $f :X\rightarrow Y$が点$x\in X$で連続とする. このとき$x$に収束する任意の$X$の点列$\{ x_n\}_{n =1}^{\infty}$について, $\{ f(x_n)\}_{n =1}^{\infty}$は$f(x)$に収束する.
+	\item 上の逆は一般には成り立たない. その例を構成せよ.\footnote{位相空間の間の写像$f :X\rightarrow Y$と点$a \in X$であって, 「$a \in X$に収束する任意の$X$の点列$\{ x_n\}_{n =1}^{\infty}$について, $\{ f(x_n)\}_{n =1}^{\infty}$は$f(a)$に収束する」が「$f :X\rightarrow Y$が点$a\in X$で連続」ではない例を構成してください.}
+	(つまり点列を用いた連続性の定義は一般には弱いことを意味する.)
+	\end{enumerate}
+ \end{enumerate}
+
+
+ \end{document}
