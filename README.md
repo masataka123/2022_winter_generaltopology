@@ -43,6 +43,7 @@
 [第1回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/1_距離空間.pdf) 
 
 - 第2回 (2022/10/11). 位相空間 [第2回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/2_位相空間.pdf) 
+(2022/10/07 訂正: 問2.6 (Fortissimo space)について"V"が高々加算ではなく"X-V"が高々加算の間違いです. 上のバージョンで訂正いたしました. )
 
 - 第3回 (2022/10/18). 連続写像 [第3回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/3_連続写像.pdf) 
 
