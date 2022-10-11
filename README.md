@@ -42,9 +42,11 @@
 [ガイダンス資料](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/0_ガイダンス資料.pdf) 
 [第1回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/1_距離空間.pdf) 
 
+残っている問題: 問1.8, 1.9(10/18に解答予定) 
+
 (2022/10/11 訂正: 問1.3 "Hilbert空間と呼ばれる"ではなく"Hilbert空間の一種である"の方が正しいです. 上のバージョンで訂正いたしました.)
 
-残っている問題: 問1.8, 1.9(10/18に解答予定) 
+
 - 第2回 (2022/10/11). 位相空間 [第2回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/2_位相空間.pdf) 
 
 残っている問題: 問2.1, 2.4, 2.6, 2.14(10/18に解答予定)  問2.2, 2.3, 2.5, 2.7--2.13
