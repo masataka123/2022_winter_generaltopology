@@ -1,0 +1,215 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+\begin{center}
+{\Large 6. 商位相}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/11/08
+\end{flushright}
+
+この問題を解答するにあたり以下の用語を定義しておく.(これは次回の演習の内容でもある).
+   \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+位相空間$(X, \mathscr{O})$とする．
+$X$が\underline{ハウスドルフ空間(または$T_2$空間)}であるとは, 任意の$a, b \in X$について, ある$U, V \in \mathscr{O}$があって$a \in U, b \in V, U \cap V = \varnothing $となること.
+  \end{dfn}
+ \end{tcolorbox}
+ 
+また断りがなければ, $\R^{n}$にはユークリッド位相を入れたものを考える. また$\R^{n+1}$の部分集合$S^n$を
+$S^n = \{ (x_1, \ldots, x_{n+1}) \in \R^{n+1} \, |\,\sum_{i=1}^{n+1} x_{i}^{2} =1\}$
+と定め, 位相は$\R^{n+1}$の相対位相を入れる. 
+
+\begin{enumerate}[ label=\textbf{問}6.\arabic*]
+	
+	
+
+\item 実数の集合$\R$について, 同値関係$\sim_{1}$を
+	$$
+	x \sim_{1} y \Leftrightarrow x - y \in \Z
+	$$
+	を考える. $\pi : \R \rightarrow \R / \sim_{1}$を標準写像とし$\pi$により$\R / \sim_{1}$に商位相を入れる. 以下の問いに答えよ.
+	\begin{enumerate}
+	\item $f : \R \rightarrow S^1$を$f(t) = (\cos 2 \pi t, \sin 2 \pi t)$とする. このときある連続写像$\tilde{f}: \R / \sim_{1} \rightarrow S^1$で$f = \tilde{f} \circ \pi $となるものが唯一存在することを示せ. 
+	\item $\tilde{f}$は全単射であることを示せ. 
+	%\item $f$は商写像であること示せ. 
+	\item $\tilde{f}^{-1}$は連続であることを示せ. よって$\R / \sim_{1}$と$S^1$は同相である. \footnote{もし別に同相を示す手段があるなら他の方法を用いて良い. 実は授業後半の事実を用いると$(c)$は簡単に示せる. (おそらく現時点だと少々厄介である.).}
+	\end{enumerate}
+
+	
+	%このとき$\R / \sim_{1}$は$S^1$と同相であることを以下
+
+\item 実数の集合$\R$について, 同値関係$\sim_{2}$を
+	$$
+	x \sim_{2} y \Leftrightarrow x - y \in \Q
+	$$
+	とし$\R / \sim_{2}$に商位相を入れる.  $\R / \sim_{2}$はハウスドルフ空間であるか判定せよ. 
+
+\item $X = \{(x,y) \in \R^2| \text{$y=0$または$y=1$} \}$とする. 同値関係$\sim$を
+	$$
+	(x_1,y_1) \sim (x_2,y_2) \Leftrightarrow \text{「$x_1 \neq 0$ かつ $x_1=x_2$」または「$y_1=y_2$かつ$x_1=x_2$」}
+	$$
+	とし$X / \sim$に商位相を入れる.  $X/ \sim$はハウスドルフ空間であるか判定せよ. 
+
+
+ 
+\item 次の問いに答えよ. 
+	\begin{enumerate}
+	\item 閉写像でも開写像でない連続写像の例をあげよ.
+	%\item 閉写像であるが開写像でない連続写像の例をあげよ.
+	\item 連続全単射が開写像であれば同相写像であることを示せ.
+	\end{enumerate}
+	
+\item$^*$ $(X, \mathscr{O}_X )$を位相空間とし, $\sim$を$X$上の同値関係とする. $\mathscr{O}(\pi)$を標準写像$\pi : X \rightarrow X/\sim$による商位相とし, $(X/\sim, \mathscr{O}(\pi))$を商空間とする. 
+次の主張に関して, 真である場合は証明し, 偽である場合は反例をあげよ.
+	\begin{enumerate}
+	\item 商写像$\pi : X \rightarrow X/\sim$は開写像である.
+	\item 商写像$\pi : X \rightarrow X/\sim$は閉写像である.
+	\end{enumerate}
+	
+\item $\R^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	x \sim y \Leftrightarrow \text{0でない実数$\alpha$が存在して$x = \alpha y$}
+	$$
+	と定義する. 商写像$\pi : \R^{n+1} \setminus \{ 0\} \rightarrow (\R^{n+1} \setminus \{ 0\})/\sim$によって位相を入れたものを実射影空間と呼び, $ \R\mathbb{P}^{n}:= (\R^{n+1} \setminus \{ 0\})/\sim$と書く.  以下$x= (x_{1}, z_{2}, \ldots, x_{n+1})$を$\R\mathbb{P}^{n}$の元とみなしたものを$(x_{1}: \cdots : x_{n+1})$と書き実同次座標と呼ぶ. 
+次の問いに答えよ
+	\begin{enumerate}
+	\item $i=1,\ldots, n+1$について$U_{i} = \{(x_{1}: \cdots : x_{n+1}) | x_i \neq 0\}$とおく. $\R\mathbb{P}^{n} = \cup_{i=1}^{n+1}U_i$であることをしめせ.
+	\item $i=1,\ldots, n+1$について写像$f_i : \R^{n} \rightarrow U_i$を$f_i(y_1, \ldots,y_{n})=(y_1: \cdots :y_{i-1}:1:y_{i+1}:\cdots : y_{n} )$とする. $f_i : \R^{n} \rightarrow U_i$は同相写像を定めることを示せ.
+	\end{enumerate}
+\item $ \R\mathbb{P}^{1}$は$S^1$と同相であることを示せ.
+\item 次の問いに答えよ.	
+	\begin{enumerate}
+	\item 
+	$$
+\begin{array}{ccccc}
+\sigma: &S^{n}& \rightarrow & \R\mathbb{P}^{n}& \\
+&(x_{1}, \ldots, x_{n+1}) & \longmapsto & 
+(x_{1}: \cdots : x_{n+1})&
+\end{array}
+$$
+は全射連続写像であることを示せ.
+	\item $\sigma$は商写像であることを示せ. 
+	\item 任意の$q \in \R\mathbb{P}^{n}$について$\sigma^{-1}(q)$の個数を求めよ.
+	\item $f : S^2 \rightarrow \R^3$を$f(x,y,z)=(yz,zx,xy)$とする.  このときある連続写像で$\tilde{f}: \R\mathbb{P}^{2} \rightarrow \R^3$で$f =\tilde{f} \circ  \sigma$となるものが唯一存在することを示せ. 
+
+	\end{enumerate}
+\item$^{*}$
+$GL(2, \R) $を$2 \times 2$の正則行列とする. $\begin{pmatrix}
+a & b\\
+c& d
+\end{pmatrix}
+\in GL(2, \R) $を$(a,b,c,d) \in \R^4$と同一視することで, $GL(2, \R)$を$\R^4$の部分集合とみなし, $\R^4$の相対位相を入れる.
+
+$GL(2, \R) $に同値関係$\sim$を
+$$
+	A \sim B \Leftrightarrow \text{$P \in GL(2, \R)$が存在して$A = P^{-1} B P$}
+	$$
+を考える. 次の問いに答えよ.
+	\begin{enumerate}
+	\item 任意の$\alpha \neq 0$なる実数について
+$\begin{pmatrix} 1& \alpha\\0& 1\end{pmatrix} \sim \begin{pmatrix} 1 & 1\\0& 1\end{pmatrix}$であることを示せ.
+	\item 商空間$GL(2, \R)/\sim$はハウスドルフ空間であるか判定せよ.
+	\end{enumerate}
+	
+%\item 教科書の例入れてみる?
+%\item 次を示せ
+%\item 商社像のuniversality 
+%\item 幾何学1での問題を持ってくる.
+%\item $S^1$と同相の問題
+%\item 複素射影空間$\C\mathbb{P}^1$と$S^2$の同相
+%\item なんか適当に割った空間のハウスドルフ性
+ \end{enumerate}
+
+
+
+
+
+ \end{document}

@@ -3,6 +3,7 @@
  こちらは2022年度秋冬学期 大阪大学 理学部数学科 幾何学基礎2(位相空間論) 演義のホームページです.
  
 # News
+- 
 - 2022/10/18 来週(2022/10/25)から演習は理学部D303教室で行います.
 - 2022/10/04 ガイダンスを行いました. 来週から演習の授業を行うので, 演習問題をあらかじめ解いておいて発表できる状態にしておいてください. 
 - 2022/09/16 授業ページを作りました.
@@ -62,9 +63,9 @@
 
 - 第4回 (2022/10/25). 開基と基本近傍系 [第4回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/4_開基と基本近傍系.pdf) 
 
-- 第5回 (2022/11/01). 
+- 第5回 (2022/11/01). 積位相 [第5回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/5_積位相.pdf) 
 
-- 第6回 (2022/11/08). 
+- 第6回 (2022/11/08). 商位相 [第6回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/6_商位相.pdf) 
 
 - 第7回 (2022/11/15). 休講(予定)
 

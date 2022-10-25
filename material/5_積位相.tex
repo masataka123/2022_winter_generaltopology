@@ -1,0 +1,169 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+\begin{center}
+{\Large 5. 積位相}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/11/01
+\end{flushright}
+以下断りがなければ, $\R^{n}$にはユークリッド位相を入れたものを考える. また集合系を表す際に用いられる$\Lambda$は空でないと仮定する. 
+\begin{enumerate}[ label=\textbf{問}5.\arabic*]
+
+\item $f : \R \times \R \rightarrow \R$を$f(x,y)=x+y$で定めると連続写像になることを示せ.
+\item  $f : X \rightarrow \R$を位相空間$X$から$\R$への写像とする．次は同値であることを示せ.
+	\begin{enumerate}
+	\item $f$は連続である.
+	\item $\{ (x,y) \in X \times \R | f(x) >y\}$と$\{ (x,y) \in X \times \R | f(x) <y\}$は共に$X \times \R$の開集合である. 
+	%\item $\{ (x,y) \in X \times \R | f(x) =y\}$は$X \times \R$の閉集合である. 
+	\end{enumerate}
+\item  $f : X \rightarrow \R$を位相空間$X$から$\R$への写像とする. 次の主張が正しい場合は証明し, 間違っている場合は反例をあげよ.
+
+「$\{ (x,y) \in X \times \R | f(x) =y\}$が$X \times \R$の閉集合であるとき, $f$は連続である.」
+
+\item 位相空間$(X, \mathscr{O}_X )$について$\Delta : X \rightarrow X \times X$を$\Delta(x)=(x,x)$で定める．
+$\Delta$は$(X, \mathscr{O}_X )$から$(X, \mathscr{O}_X )\times (X, \mathscr{O}_X )$への連続写像であることを示せ.
+
+\item $(X,d)$を距離空間とする. 距離関数$d : X \times X \rightarrow \R$は積位相に関して連続であることを示せ．
+\item $(X,d_X)$, $(Y,d_Y)$を距離空間とする. 関数$d_{X \times Y} : (X \times Y)\times (X \times Y) \rightarrow \R$を
+$$
+d_{X \times Y} ( (x_1, y_1) ,  (x_2, y_2)) :=  d_X (x_1, x_2) + d_Y(y_1, y_2)
+$$
+と定義する. $d_{X \times Y} $は$X \times Y$上の距離関数になり,  $d_{X \times Y} $が定める位相が$X \times Y$の積位相に一致することを示せ. 
+
+%\item $X,Y$を集合とし, $\mathscr{S}\subset \mathfrak{P}(X), \mathscr{T} \subset \mathfrak{P}(Y)$とする.$\mathscr{S}$から生成される位相を$\mathscr{O}_\mathscr{S}$, $\mathscr{T}$から生成される位相を$\mathscr{O}_\mathscr{T}$とする.積位相$\mathscr{O}_\mathscr{S} \# \mathscr{O}_\mathscr{T}$は$\mathscr{S} \times \mathscr{T}$から生成される位相と一致するか?
+
+
+%\item 位相空間$(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$で$$\mathscr{B} = \{ V \times W | V \in \mathscr{O}_X, W \in \mathscr{O}_Y\}$$が開集合系とならないものの例をあげよ.
+
+%\item 内田例19.1において次が示されている. 「$\mathscr{O}_n, \mathscr{O}_m$を$\R^n,\R^m$のユークリッド位相とする. $\R^n \times \R^m $と$\R^{n+m}$を同一視すれば, $\mathscr{O}_n$と$\mathscr{O}_m$の積位相$\mathscr{O}_n \#\mathscr{O}_m$が$\mathscr{O}_{n+m}$である.」ただどうもこれの証明があまり気に食わなかった. そこで次の通りに証明せよ\begin{enumerate}\item 第一射影$p : \R^{n+m} \rightarrow \R^n$とする. $p$は$(\R^{n+m},\mathscr{O}_{n+m})$から$(\R^{n},\mathscr{O}_{n})$は連続であることをしめせ.\item $\mathscr{O}_n \#\mathscr{O}_m$は$\mathscr{O}_{n+m}$より小さい位相であることをしめせ. \item $(\R^{n+m},\mathscr{O}_{n+m})$の開基$\mathscr{A}$で$$\mathscr{A} \subset \mathscr{B} = \{ V \times W | V \in \mathscr{O}_{n}, W \in \mathscr{O}_{m}\}$$となるものを一つ構成せよ\item $\mathscr{O}_n \#\mathscr{O}_m$は$\mathscr{O}_{n+m}$より大きい位相であることをしめせ. \end{enumerate}
+
+
+
+%\item $\{ X_\lambda \}_{\lambda \in \Lambda}$を集合系とし, $\mathscr{O}_{\lambda}$を$X_{\lambda}$の位相とする. $ V_\lambda \in \mathscr{O}_{\lambda}$を$X_{\lambda}$の開集合とする. 次の主張が正しい場合は証明し, 間違っている場合は反例をあげよ\begin{enumerate}\item $\prod_{\lambda \in \Lambda} V_{\lambda}$は積空間$\prod_{\lambda \in \Lambda} (X_{\lambda},\mathscr{O}_{\lambda} )$の開集合になる．\item $\Lambda$が有限集合ならば, $\prod_{\lambda \in \Lambda} V_{\lambda}$は積空間$\prod_{\lambda \in \Lambda} (X_{\lambda},\mathscr{O}_{\lambda} )$の開集合になる．\end{enumerate}
+
+\item $\N$を自然数の集合とし, 各$i \in \N$について, $X_{i} =\R $とする. %(ただし$\mathscr{O}_{Euc}$は$\R$のユークリッド位相とする.) 
+$\prod_{i \in \N} (0,1)$は積空間$\prod_{i \in \N} X_{i}$の開集合かどうか判定せよ.
+	
+
+%\item 次を示せ
+	%\begin{enumerate}
+	%\item 閉写像でも開写像でない連続写像の例をあげよ.
+	%\item 閉写像であるが開写像でない連続写像の例をあげよ.
+	%\item 連続全単射が開写像であれば同相写像であることを示せ.
+	%\end{enumerate}
+
+\item (積位相の普遍性)
+$\{ X_\lambda \}_{\lambda \in \Lambda}$を集合系とし, $\mathscr{O}_{\lambda}$を$X_{\lambda}$の位相とする. 
+「任意の位相空間$(T, \mathscr{O}_{T})$と連続写像の族$g_{\lambda} : T \rightarrow X_\lambda $について, 
+ある積空間$\prod_{\lambda \in \Lambda} X_{\lambda}$への連続写像$g : T \rightarrow \prod_{\lambda \in \Lambda} X_{\lambda}$
+がただ一つ存在して, 任意の$\mu \in \Lambda$について$g_{\mu} = p_{\mu} \circ g $となる」ことを示せ. 
+
+\item $\N$を自然数の集合とする. 各$i \in \N$について $X_{i} = \{ 0,1\}$とし$ \mathscr{O}_{i}$を$X_i$の離散位相とする.
+%$(X_{i}, \mathscr{O}_{i}) = (\{ 0,1\}, \mathcal{P}(\{0,1 \})) $とする. (つまり$(X_{i}, \mathscr{O}_{i}) $は離散位相空間とする). 
+$f :\prod_{i \in \N} X_{i} \rightarrow \R$を
+$$
+f (\{ x_i\}_{i \in \N}) = \sum_{i=0}^{\infty} \frac{x_i}{2^i}
+$$
+で定める. $f$がwell-definedであり, 積空間$\prod_{i \in \N} X_{i}$から$\R$への連続写像になることを示せ.
+
+
+\item　$(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$を位相空間とし, $A \subset X$や$B \subset Y$をその部分集合とする. 次を示せ.
+	\begin{enumerate}
+	\item $(A \times  B)^a = A^a \times B^a$
+	\item $(A \times  B)^i = A^i \times B^i$
+	\end{enumerate}
+
+
+\item $\{ X_\lambda \}_{\lambda \in \Lambda}$を集合系とし, $\mathscr{O}_{\lambda}$を$X_{\lambda}$の位相とする. 各$\lambda \in \Lambda$について部分集合$A_{\lambda} \subset X_{\lambda}$を考える.  次の主張が正しい場合は証明し, 間違っている場合は反例をあげよ.
+	\begin{enumerate}
+	\item $(\prod_{\lambda \in \Lambda} A_{\lambda})^a =\prod_{\lambda \in \Lambda} (A_{\lambda}^a)$
+	\item $(\prod_{\lambda \in \Lambda} A_{\lambda})^i =\prod_{\lambda \in \Lambda} (A_{\lambda}^i)$
+	\end{enumerate}
+	
+ \end{enumerate}
+
+ \end{document}
