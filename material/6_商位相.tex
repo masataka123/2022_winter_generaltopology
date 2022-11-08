@@ -158,11 +158,12 @@ $S^n = \{ (x_1, \ldots, x_{n+1}) \in \R^{n+1} \, |\,\sum_{i=1}^{n+1} x_{i}^{2} =
 	$$
 	x \sim y \Leftrightarrow \text{0でない実数$\alpha$が存在して$x = \alpha y$}
 	$$
-	と定義する. 商写像$\pi : \R^{n+1} \setminus \{ 0\} \rightarrow (\R^{n+1} \setminus \{ 0\})/\sim$によって位相を入れたものを実射影空間と呼び, $ \R\mathbb{P}^{n}:= (\R^{n+1} \setminus \{ 0\})/\sim$と書く.  以下$x= (x_{1}, z_{2}, \ldots, x_{n+1})$を$\R\mathbb{P}^{n}$の元とみなしたものを$(x_{1}: \cdots : x_{n+1})$と書き実同次座標と呼ぶ. 
+	と定義する. 商写像$\pi : \R^{n+1} \setminus \{ 0\} \rightarrow (\R^{n+1} \setminus \{ 0\})/\sim$によって位相を入れたものを実射影空間と呼び, $ \R\mathbb{P}^{n}:= (\R^{n+1} \setminus \{ 0\})/\sim$と書く.  以下$x= (x_{1}, x_{2}, \ldots, x_{n+1})$を$\R\mathbb{P}^{n}$の元とみなしたものを$(x_{1}: \cdots : x_{n+1})$と書き実同次座標と呼ぶ. 
 次の問いに答えよ
 	\begin{enumerate}
 	\item $i=1,\ldots, n+1$について$U_{i} = \{(x_{1}: \cdots : x_{n+1}) | x_i \neq 0\}$とおく. $\R\mathbb{P}^{n} = \cup_{i=1}^{n+1}U_i$であることをしめせ.
-	\item $i=1,\ldots, n+1$について写像$f_i : \R^{n} \rightarrow U_i$を$f_i(y_1, \ldots,y_{n})=(y_1: \cdots :y_{i-1}:1:y_{i+1}:\cdots : y_{n} )$とする. $f_i : \R^{n} \rightarrow U_i$は同相写像を定めることを示せ.
+    	\item $i=1,\ldots, n+1$について写像$f_i : \R^{n} \rightarrow U_i$を$f_i(y_1, \ldots,y_{n})=(y_1: \cdots :y_{i-1}:1:y_i:y_{i+1}:\cdots : y_{n}:1 )$とする.\footnote{$i=1$のときは$f_1(y_1, \ldots,y_{n})=(1:y_1:\cdots : y_{n} )$とし, $i=n+1$のときは$f_{n+1}(y_1, \ldots,y_{n})=(y_1:\cdots : y_{n}:1 )$とする.}
+	$f_i : \R^{n} \rightarrow U_i$は同相写像を定めることを示せ.
 	\end{enumerate}
 \item $ \R\mathbb{P}^{1}$は$S^1$と同相であることを示せ.
 \item 次の問いに答えよ.	
