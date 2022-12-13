@@ -76,11 +76,11 @@
 
 - 第5回 (2022/11/01). 積位相 [第5回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/5_積位相.pdf) 
 
-<u>残っている問題:  問 5.3, 5.6, 5.7, 5.9, 5.11</u>
+<u>残っている問題:  問 5.3, 5.7, 5.9, 5.11</u>
 
 - 第6回 (2022/11/08). 商位相 [第6回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/6_商位相.pdf) 
 
- <u>次回解答予定 問 6.6. 残っている問題: 6.1, 6.3, 6.4, 6.7, 6.8</u>
+ <u>次回解答予定 問 6.6. 残っている問題: 6.1, 6.3, 6.7, 6.8</u>
 
 (2022/11/08 訂正: 問6.6(b) f_iの定義を修正いたしました. )
 
