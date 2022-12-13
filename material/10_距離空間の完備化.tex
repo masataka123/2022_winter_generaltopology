@@ -1,0 +1,281 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+\begin{center}
+{\Large 10.距離空間の完備化}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/12/13
+\end{flushright}
+
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である.  以下断りがなければ$\R^{n}$にはユークリッド位相を入れたものを考える. また位相空間$X$は2点以上の点を含むものとする.
+
+\begin{enumerate}[label=\textbf{問}10.\arabic*]
+
+%\item \label{examlple} ユークリッド空間$\R^n$, $n$次元球$S^{n}$, 実射影空間$\R\mathbb{P}^{n}$, 2次元トーラス$T^2$, 
+
+%\item $^{\bullet}$ 完備な距離空間と完備でない距離空間の例をひとつづつあげよ.
+
+\item \label{uniform} $^{\bullet}$  $C[0,1] := \{ f : [0,1] \rightarrow \R \,|\, \text{$f$は実数値連続関数}\}$とおく. 以下この問題では, 関数列$\{ f_{i}\}_{i=1}^{\infty}$と言えば$f_i \in C[0,1]$となる関数の列とする. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 「関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に各点収束する」ことの定義を述べよ.
+\item 「関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束する」ことの定義を述べよ. 
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束するならば, 各点収束することを示せ. 
+\item (c)の逆は一般には成り立たない. その関数列の例を一つあげよ.
+\item $f,g \in C[0,1]$に関して
+$
+d_{\infty}(f,g)=\sup_{x \in [0,1] }\{ |f(x) - g(x)|\}
+$
+とおく. 問題1.2と同様にして$(C[0,1], d_{\infty})$は距離空間になる. 
+$(C[0,1], d_{\infty})$は完備であることを示せ.
+\end{enumerate}
+
+\item \label{hilbert} $^{\bullet}$ 実数列$x = \{ x_n\}_{n=1}^{\infty}$で$\sum_{n=1}^{\infty} x_{n}^{2} < \infty$となるものの集合を$l^2$とする.
+ $x,y \in l^2$について$d_{ l^2}(x,y) = \sqrt{ \sum_{n=1}^{\infty} (x_n- y_n)^2}$
+ と定めると, 問1.3から$(l^2,d_{ l^2})$は距離空間となる. $l^2$はこの距離$d_{ l^2}$に関して完備であることを示せ.
+
+\item $^{\bullet}$ 次の問いに答えよ.
+	\begin{enumerate}
+	\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+	\item 距離空間上のコンパクト集合は有界閉集合であることを示せ.
+	\item $(l^2,d_{ l^2})$を \ref{hilbert}の通りとし, 
+	$
+	A := \{ x  \in  l^2 \,|\, d_{ l^2}(x,x)=1\}
+	$
+	とおく. $A$は$(l^2,d_{ l^2})$の有界閉集合であるがコンパクト集合ではないことを示せ. また$(l^2,d_{ l^2})$もコンパクトではないことを示せ.
+	 \end{enumerate}
+
+
+
+\item $(X,d)$を距離空間とし, $X$の部分集合$A,B$について
+$d(A,B) := \inf_{a \in A, b \in B} \{ d(a,b)\}$
+と定める. 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+	\item ある距離空間と互いに交わらない閉集合$A,B$で$d(A,B) =0$となるものの例をあげよ.
+	\item $A$をコンパクト集合, $B$を閉集合とするとき, $A$と$B$が互いに交わらなければ$d(A,B)=0$であることを示せ.
+\end{enumerate}
+
+
+\item $^{*}$ $(C[0,1], d_{\infty})$を\ref{uniform}の通りとする. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $A=\{ f \in C[0,1] \,|\, f([0,1]) \subset [0,1] \}$とおくと, $A$は$(C[0,1], d_{\infty})$のコンパクト集合ではないこと示せ.
+\item $B=\{ f \in A \,|\, \text{任意の$x,y \in [0,1]$について}|f(x)-f(y)| \le |x-y| \}$とおくと, $B$は$(C[0,1], d_{\infty})$のコンパクト集合であることを示せ.%\footnote{ヒント: $[0,1]\times[0,1]$を$n$等分点}
+\end{enumerate}
+
+
+\item $^{*}$ $C[0,1]$を\ref{uniform}の通りとし, $f,g \in C[0,1]$に関して
+$$
+d_1(f,g) := \int_{0}^{1} |f(x) - g(x)| dx
+$$
+とおくと$d_1$は$C[0,1]$の距離となる. $d_1$の距離に関して関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に収束するとき, $\{ f_{i}\}_{i=1}^{\infty}$は$f$に$L^1$収束すると呼ぶ. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $(C[0,1], d_1)$は完備ではないことを示せ.
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束するならば, $L^1$収束すること示せ. 
+\item $L^1$収束するが一様収束しない関数列の例を一つあげよ.
+\item 各点収束するが$L^1$収束しない関数列の例を一つあげよ.
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$であって, $L^1$収束するが, 任意の$x \in [0,1]$について$\{f_{i}(x)\}_{i=1}^{\infty}$が収束しない関数列の例を一つあげよ.
+\end{enumerate}
+
+\item $^{*}$ $C[0,1]$を\ref{uniform}の通りとする. $x \in [0,1]$について$X_x = \R$とおくことで, 
+$C[0,1] \subset \prod_{x \in [0,1]} X_{x}$とみなせる. そこで$\prod_{x \in [0,1]} X_{x}$の積位相の$C[0,1]$への相対位相を$\mathscr{O}_p$とおく. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に各点収束することは, 位相空間$(C[0,1], \mathscr{O}_p)$において$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に収束することと同値であることを示せ. (後者の収束の定義に関しては問題3.10を参照せよ.)
+\item $\mathscr{O}_p$は距離空間$(C[0,1],d_{\infty})$が作る位相$\mathscr{O}_{\infty}$よりも真に小さい, つまり$\mathscr{O}_p\subsetneq \mathscr{O}_{\infty}$であることを示せ.\footnote{\ref{uniform}と合わせると位相が小さいほど収束しやすいことがわかる.}
+\end{enumerate}
+
+
+
+\item $^{*}$ $p$を素数とする. 
+%$f_p : \Q \rightarrow \Q$を
+%$$
+%  f_p(x)= \begin{cases}
+%     p^{- \gamma}& (x=p^{-\gamma}\frac{m}{n}, \text{$m,n$は互いに素な整数}) \\
+%    0& (x =0)
+%  \end{cases}
+%  $$
+0でない有理数$r \in \Q$について, $r=p^e\frac{n}{m}$($m,n$はともに$p$と互いに素な整数)と表せるとき, $v_{p}(r):=e$と定義する.
+$r \in \Q$について
+$$|r|_{p}= \begin{cases} p^{- v_{p}(r)}& (r\neq 0)\\0& (r=0)\end{cases}
+$$
+とおく. 次の問いに答えよ.
+
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 0でない有理数$r,s \in \Q$について, $r+s \neq 0$ならば$v_{p}(r+s) \ge \min(v_{p}(r), v_{p}(s))$であることを示せ.
+%\footnote{$v_{p}(0)=\infty$と形式的に定義すれば, $v_{p}$は次の3つの条件を満たす: 「(1)$v_{p}(x)=\infty \Leftrightarrow x = 0$」, 「(2)$v_{p}(xy)=v_{p}(x)v_{p}(y)$」, 「(3)$v_{p}(x+y) \le \min(v_{p}(r), v_{p}(s))$」 このような}
+\item $x,y \in \Q$について$d_{p}(x,y) :=|x-y|_{p} $とおくと$d_{p}$は$\Q$の距離になることを示せ.
+%\item $(\Q, d_{p})$は完備でないことを示せ. 
+以下$\Q_p$を$\Q$の$d_{p}$による完備化とする. また完備化によって誘導される$\Q_p$上の距離を$d_{p}$と同じ記号で書くことにする.
+\item $\{ a_{n}\}_{n=0}^{\infty}$を有理数の数列とする. $(\Q_p,d_{p})$上で$\sum_{n=0}^{\infty} a_n$がある値に収束することは
+$\lim_{n \rightarrow \infty}|a_n|_{p} = 0$ であることと同値であることを示せ.
+\item $(\Q_p,d_{p})$上で$\sum_{n=0}^{\infty} p^n = \frac{1}{1-p}$であることを示せ. %特に$(\Q_2,d_{2})$上で$-1 = \sum_{n=0}^{\infty} 2^n = 1 + 2 + 4 + \cdots$である.
+\item $b_n \in \{0,1\}$かつ$(\Q_2,d_{2})$上で$\frac{2}{7} = \sum_{n=0}^{\infty} b_n 2^n$となるような数列$\{b_n\}_{n=0}^{\infty}$を決定せよ.
+\end{enumerate}
+
+
+
+
+
+ \end{enumerate}
+ 
+ \begin{comment}
+ 
+ 
+$\Q$の元$x,y$について次の関数$d_p(x,y)$を考える
+$$
+d_p(x,y)
+= \begin{cases}
+     p^{- \gamma}& (x-y=p^{-\gamma}\frac{m}{n}, \text{$m,n$は互いに素な整数}) \\
+    0& (x-y=0)
+  \end{cases}
+$$
+$d_p$は$\Q$上の距離になることを示せ.
+\item $d_p$は$\Q$上の距離による完備化の問題.
+ 
+ \item　各点収束の位相の問題
+ 
+ \item $C(X),L^1$は完備ではないことを示せ
+\item $\Z$に
+
+ 
+ \item $^{\bullet}$  $C[0,1] := \{ f : [0,1] \rightarrow \R | \text{$f$は実数値連続関数}\}$とし,  
+
+%\item \ref{hilbert}における$(l^2,d)$はコンパクトでないことを示せ
+
+\item \label{uniform} $^{\bullet}$  $C[0,1]$を実数値連続関数$f : [0,1] \rightarrow \R$の集合とする. 以下この問題では, 関数列$\{ f_{i}\}_{i=1}^{\infty}$と言えば
+$f_i \in C[0,1]$となる関数の列とする. 次の問いに答えよ.
+\begin{enumerate}
+\item 「関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に各点収束する」ことの定義を述べよ.
+\item 「関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束する」ことの定義を述べよ.
+\item $\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束
+\item (c)の逆は一般には成り立たない. その関数列の例をひとつ構成せよ.
+\item 
+\end{enumerate}
+
+
+\item $X$をコンパクト空間とし$
+C(X) := \{ f : X \rightarrow \R | \text{$f$は実数値連続関数}\}$
+とし, $f,g \in C(X)$に関して
+$$
+\delta(f,g)=\sup_{x \in X}\{ |f(x) - g(x)|\}
+$$
+とおく. このとき$(C(X), \delta)$は完備距離空間になることを示せ.\footnote{$X=[0,1]$のとき\ref{uniform}での一様収束とはこの距離による収束を意味する. }
+
+
+　この問題は各点収束を位相の面から捉える問題である.
+
+一様収束, $L^1$収束, 各点収束の問題 of $\R$
+
+\item 広義一様収束
+
+
+ \end{comment}
+
+ 
+ \vspace{11pt}
+\begin{wrapfigure}{r}[0pt]{0.2\textwidth}
+  \centering
+ \includegraphics[height=25mm, width=25mm]{genetopo.png}
+\end{wrapfigure}
+
+
+演習の問題は授業ページ(\url{https://masataka123.github.io/2022_winter_generaltopology/})にもあります. 
+右下のQRコードからを読み込んでも構いません.
+
+
+ \end{document}

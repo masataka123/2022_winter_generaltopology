@@ -1,0 +1,207 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+\begin{center}
+{\Large 9. 連結}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/12/13
+\end{flushright}
+
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である.  以下断りがなければ$\R^{n}$にはユークリッド位相を入れたものを考える. また位相空間$X$は2点以上の点を含むものとする.
+
+
+\begin{enumerate}[label=\textbf{問}9.\arabic*]
+
+%\item \label{examlple} ユークリッド空間$\R^n$, $n$次元球$S^{n}$, 実射影空間$\R\mathbb{P}^{n}$, 2次元トーラス$T^2$, 
+\item $^{\bullet}$ 演習で出てきた位相空間を1つあげ連結かどうか判定せよ. ただしこの問題はまだ発表していない人のみ解答でき, 複数人の回答を可とする.
+\footnote{例えば$\R^n$, $S^{n}$, 離散位相空間, 密着位相空間, $T^2$, $\R\mathbb{P}^n$, $\C\mathbb{P}^n$, グラスマン多様体などが挙げられる. }%footnote{例えば$\R^n$, $S^{n}$, 離散位相空間, 密着位相空間などが挙げられる. 他にも問題2.1など演習で扱っているものならばそれを解答しても良い. なおこの問題は発表した位相空間によって配点が異なる. 難しそうな空間であれば配点が大きい.(難しそうな空間ならば誰でも発表して良い).}
+
+
+\item $^{\bullet}$ 連続な全射写像$f: X \rightarrow Y$について$X$が連結ならば$Y$も連結であることを示せ. またこれを用いて$(0,1)$, $[0,1)$, $[0,1]$はどれも互いに同相ではないことを示せ.
+
+
+\item $^{\bullet}$ $X$を位相空間とし, $A \subset X$を$X$の連結集合とする. 任意の$A \subset B \subset \overline{A}$となる部分集合$B$は$X$の連結集合であることを示せ.
+
+%\item $^{\bullet}$ $(0,1)$, $[0,1)$, $[0,1]$はどれも互いに同相ではないことを示せ.
+
+\item $^{\bullet}$  $X$をコンパクト位相空間, $Y$を連結ハウスドルフ空間とする. 連続写像$f : X \rightarrow Y$が開写像であるならば, $f$は全射であることを示せ. 
+
+\item $^{\bullet}$ $X$を集合とし, $\mathscr{O}_1, \mathscr{O}_2$を $\mathscr{O}_1 \subset \mathscr{O}_2$となる開集合系とする. 次の問いに答えよ.\footnote{開集合が多ければハウスドルフになりやすく, 開集合が少なければコンパクト・連結になりやすいということである.}
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 位相空間$(X, \mathscr{O}_1)$がハウスドルフならば, 位相空間$(X, \mathscr{O}_2)$もハウスドルフである.
+\item 位相空間$(X, \mathscr{O}_2)$がコンパクトならば, 位相空間$(X, \mathscr{O}_1)$もコンパクトである.
+\item 位相空間$(X, \mathscr{O}_2)$が連結ならば, 位相空間$(X, \mathscr{O}_1)$も連結である.
+\end{enumerate}
+
+
+\item $X$を位相空間とする. 次は同値であることを示せ．
+\begin{enumerate}[label=(\roman*)]
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+  \item $X$は連結である.
+  \item 任意の実連続関数$f : X \rightarrow \R$と任意の$u,v \in X$, $t \in \R$について, $f(u) \le t \le f(v)$ならば, ある$w \in X$が存在して$f(w) = t$となる. 
+\end{enumerate}
+\item $\R^2$から$\R$への全単射は存在するが, $\R^2$から$\R$への同相写像は存在しないことを示せ.
+
+
+\item 位相空間$X$と$x \in X$について, $x$を含む最大の連結集合を\underline{$x$を含む$X$の連結成分}という. 次の問いに答えよ. 
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+  \item $0 \in \R$を含む$\R$の連結成分を求めよ.
+  \item $\Q \subset \R$に$\R$の相対位相を入れる. $0 \in \Q$を含む$\Q$の連結成分を求めよ. 
+  \item 連結成分は常に連結な$X$の閉集合であることを示せ.
+  \item 連結成分は常に$X$の開集合になるか. 正しければ証明し, 間違いならば反例を与えよ.
+\end{enumerate}
+
+%$\R$にユークリッド位相をいれ, 有理数の集合$\Q$に$\R$の部分位相を入れる. 任意の$x \in \Q$について$x$を含む連結成分は$\{ x\}$であることを示せ. 特に$\Q$は完全不連結である.
+
+\item $A \subset \R^2$を可算集合とする. $\R^2 \setminus A$は弧状連結であることを示せ. (特に連結な集合となる.)
+
+\item 位相空間$X$について, 任意の$x \in X$とその任意の近傍$N$について$x$の弧状連結な近傍$U$があって$U \subset N$となるとき$X$は\underline{局所弧状連結}と呼ばれる. 次の問いに答えよ.
+	\begin{enumerate}
+	\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+	\item 局所弧状連結だが弧状連結でない空間の例をあげよ.
+	\item 連結かつ局所弧状連結ならば弧状連結であることを示せ. また$\R^n$の連結開集合は弧状連結になることを示せ. 
+	\end{enumerate}
+\item $^{*}$ (topologist's comb) $\R^2$の部分集合$X$を
+$$
+X := \{ 0\} \times (0,1] \cup (0,1] \times \{ 0 \} \cup \bigcup_{n=1}^{\infty}\left\{ \frac{1}{n} \times (0,1] \right\}
+$$
+とし, $X$に$\R^2$の相対位相を入れる. 次の問いに答えよ. 
+	\begin{enumerate}
+	\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+  \item $X$を図示せよ. 
+  \item $X$は連結であることを示せ.
+  \item $X$は弧状連結ではないことを示せ. また局所連結ではないことを示せ.
+  	\end{enumerate}
+%$X$を図示し, $X$は$\R^2$の連結な集合であるが, 弧状連結な集合ではないことを示せ．
+
+%\item 代数学の基本定理.(入れ)
+
+\item $^{*}$問1.2, 1.3, 1.9, 2.2, 2.3, 2.4, 2.5, 2.14, 4.1, 4.11, 4.12で出てきた位相空間のハウスドルフ性・コンパクト性・連結性を各々調べよ.
+なおこの問題は何回も答えて良いし複数人が分担して解答してもよい. なお答えた空間によって配点が異なる.
+
+
+ \end{enumerate}
+ 
+ 
+\vspace{11pt}
+\begin{wrapfigure}{r}[0pt]{0.2\textwidth}
+  \centering
+ \includegraphics[height=25mm, width=25mm]{genetopo.png}
+\end{wrapfigure}
+
+
+演習の問題は授業ページ(\url{https://masataka123.github.io/2022_winter_generaltopology/})にもあります. 
+右下のQRコードからを読み込んでも構いません.
+\begin{comment}
+\item 次の問いに答えよ
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+	\item 集合の写像$f : \R^2 \rightarrow \R$で全単射であるものが存在することを示せ.
+	\item  $\R^2$から$\R$への連続な全単射は存在しないことを示せ.
+	%\item $\mathscr{O}_n$を$\R^n$のユークリッド位相とする. $(\R^2, \mathscr{O}_2)$から$(\R, \mathscr{O}_1)$への連続な全単射は存在しないことを示せ.
+\end{enumerate}
+\item $X$を位相空間とし, $\{M_{\lambda} \}_{\lambda \in \Lambda}$を部分集合族とする.$M_{\lambda}$が連結であり, 任意の$\alpha, \beta \in \Lambda$についてある有限個の$\lambda_1, \ldots, \lambda_{n}$があって
+$$
+M_{\lambda_{i}} \cap M_{\lambda_{i+1}} \neq \varnothing (i = 1,\ldots, n-1) 
+,  M_{\alpha} \cap M_{\lambda_{1}} \neq \varnothing ,  M_{\beta} \cap M_{\lambda_{n}} \neq \varnothing
+$$
+を満たすと仮定する. このとき$\cup_{\lambda \in \Lambda} M_{\lambda}$は連結であることを示せ.
+\item 上限位相に関して$\R$は連結ではないことを示せ.
+\item 上限位相に関して連結集合はどのようなものになるか
+\end{comment}
+
+
+
+ \end{document}

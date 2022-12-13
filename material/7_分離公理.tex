@@ -1,0 +1,305 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{caption}
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+\begin{center}
+{\Large 7. 分離公理}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/12/13
+\end{flushright}
+
+分離公理は正規や正則など色々あるが, ハウスドルフが一番大事だと思われるので, 今回ハウスドルフの問題を集めた.\footnote{$T_{2 \frac{1}{2}}$空間など出しても良かったが, 無駄知識になる気がしたのでやめておきました. もし正規や正則などの分離公理が期末試験にでたらすみません.}
+
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である.  以下断りがなければ$\R^{n}$にはユークリッド位相を入れたものを考える. また位相空間$X$は2点以上の点を含むものとする.
+
+
+
+
+\begin{enumerate}[label=\textbf{問}7.\arabic*]
+
+\item $^{\bullet}$ 演習で出てきた位相空間を1つあげハウスドルフかどうか判定せよ. ただしこの問題はまだ発表していない人のみ解答でき, 複数人の回答を可とする.
+\footnote{例えば距離空間, 離散位相空間, 密着位相空間などが挙げられる. なお難しそうな空間に関して解答したい人は第9回の最後の問題を見てください.}
+%\footnote{例えば距離空間($\R^n$や$S^{n}$), 離散位相空間, 密着位相空間などが挙げられる. 他にも問題2.1など演習で扱っているものならばそれを解答しても良い. なおこの問題は発表した位相空間によって配点が異なる. 難しそうな空間であれば配点が大きい.(難しそうな空間ならば誰でも発表して良い).}
+
+\item $^{\bullet}$ $f : X \rightarrow Y$を連続な単射写像とする. $Y$がハウスドルフならば$X$もハウスドルフであることを示せ. またハウスドルフ空間$X$の部分集合$A \subset X$に相対位相を入れたものはハウスドルフであることを示せ. 
+% \footnote{ハウスドルフ空間$X$の部分集合$A \subset X$に相対位相を入れたものはハウスドルフである. 一方商空間には第6回授業でやった通りハウスドルフ性が保存されない.}
+ 
+ \item $^{\bullet}$ 連続な全射写像$f : X \rightarrow Y$で$X$はハウスドルフだが$Y$がハウスドルフでない例を一つあげよ. 
+
+\item$^{\bullet}$ 「位相空間$(X, \mathscr{O})$について$X$が$T_1$空間であるとは, 任意の異なる2点$a, b \in X$についてある$U \in \mathscr{O}$があって$a \in U$かつ$b \not \in U$となること」とする. 次の問いに答えよ.
+	\begin{enumerate}
+	 \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+	\item $X$が$T_1$空間であることは, 任意の点$x \in X$について$\{ x\}$が閉集合であることと同値であることを示せ.
+	\item $X$がハウスドルフ空間($T_2$空間)であれば$T_1$空間であることを示せ.  
+	\item $T_1$空間であるがハウスドルフ空間($T_2$空間)でない例を一つあげよ. 
+	\end{enumerate}
+
+	
+%\item $f : X \rightarrow Y$を連続写像とする. $X$がハウスドルフならば$f(X)$もハウスドルフか?
+
+\item $X$を位相空間とする. 次は同値であることを示せ.
+\begin{enumerate}[label=(\roman*)]
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $X$はハウスドルフである.
+\item 対角集合$\{ (x,x) \in X \times X\}$は$X \times X$の閉集合である.
+\item 任意の位相空間$T$と任意の連続写像$f,g : T \rightarrow X$に対し, ${\rm Ker}(f,g) = \{ t \in T | f(t) =g(t)\}$は$T$の閉集合である.
+\item 任意の位相空間$T$と任意の連続写像$f : T \rightarrow X$について$\{ (t,x) \in T \times X | f(t) =x\}$は$T \times X$の閉集合である.
+\end{enumerate}
+
+
+
+\item $f,g : X \rightarrow Y$を位相空間の間の連続写像とし, $A$を$X$の稠密な部分集合とする. 
+$Y$がハウスドルフかつ$f|_{A} =g|_{A}$ならば, $f =g$であることを示せ. 
+
+
+
+\item \label{torus} $\R^{2}$に対し同値関係$\sim$を
+$$
+(x_1, y_1)\sim (x_2, y_2) \Leftrightarrow x_1 - x_2 \in \Z \text{かつ} y_1 - y_2 \in \Z 
+$$
+で定め, 2次元トーラス$T^2 := \R^2/\sim$とする.
+$\pi : \R^2 \rightarrow T^2$という商写像により$T^2$に商位相を入れるとき, $T^2$はハウスドルフ空間であることを示せ.
+
+%\item\ref{}以外の方法実射影空間$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ.
+
+
+	
+%\item $f,g$を位相空間$(X, \mathscr{O}_X)$から位相空間$(Y, \mathscr{O}_Y)$への連続写像とする.
+	%$$A = \{ x \in X | f(x) = g(x)\}$$
+	%とするとき次の問いに答えよ
+	%\begin{enumerate}
+	%\item 一般には$A$は$X$の閉集合ではない. そのような例を構成せよ.
+	%\item $Y$がハウスドルフであるとき$A$は$X$の閉集合となることを示せ.
+	%\end{enumerate}
+
+\item 問6.8を用いて$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ. 
+
+\item $M(n+1, \R)$を$(n+1) \times (n+1)$実行列の集合とし, $M(n+1, \R) $を$\R^{(n+1)^2}$と同一視して位相を入れる. 
+$\sigma : \R^{n+1} \setminus \{0\} \rightarrow  M(n+1, \R) $を次で定める:
+{\footnotesize
+$$
+\begin{matrix}
+\sigma : & \R^{n+1} \setminus \{0\} &\rightarrow & M(n+1, \R) \\
+&(x_1, \ldots, x_{n+1})&\mapsto & 
+\frac{1}{x_{1}^{2} + \cdots + x_{n+1}^{2} }
+ \begin{pmatrix}
+ x_{1}^{2} & x_1x_2& \cdots&x_1x_{n+1} \\ 
+x_2x_1& x_{2}^{2}& \cdots&x_2x_{n+1} \\ 
+\vdots &\vdots& \cdots& \vdots \\ 
+x_{n+1}x_1&  x_{n+1}x_2& \cdots&x_{n+1}^{2} \\ 
+\end{pmatrix}
+\end{matrix}
+$$
+}
+
+ $\sigma$は連続な単射写像$\tilde{\sigma} : \R\mathbb{P}^{n} \rightarrow M(n+1, \R)$を引き起こすことを示し, それを用いて$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ. 
+ 
+\item $X$を位相空間とする. 「任意の異なる2点$p, q \in X$について, ある連続関数$f : X \rightarrow \R$で$f(p)=0, f(q)\neq 0$となるものが存在する」と仮定する. このとき$X$はハウスドルフ空間であること示せ. またこれを用いて$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ. \footnote{ヒント: 直線への射影を用いる. この手法は後の問題でも使える.}
+  
+%\footnote{色々方法がある. 「$S^n$への逆像を考える」方法や「$M(n+1, \R)$への単射を作る」方法, 「射影を」}
+
+\item $\C^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	z \sim w \Leftrightarrow \text{0でない複素数$\alpha$が存在して$z = \alpha w$}
+	$$
+	と定義する. $ \C\mathbb{P}^{n}:= (\C^{n+1} \setminus \{ 0\})/\sim$と書き複素射影空間と呼ぶ. \footnote{実射影空間と同様に$z = (z_{1}, z_{2}, \ldots, z_{n+1})$を$\C\mathbb{P}^{n}$の元とみなしたものを$(z_{1}: \cdots : z_{n+1})$と書き複素同次座標と呼ぶ. }
+	$\C\mathbb{P}^{n}$に商位相を入れるとき, $\C\mathbb{P}^{n}$はハウスドルフ空間であることを示せ.
+
+\item $^{*}$ $1 \le k < n$となる自然数について, 
+$A_{k, n}$を$k \times n$実数行列でランクが$k$となる行列全体の集合とし, $\R^{kn}$の部分集合とみなすことで$A_{k,n}$に$\R^{kn}$の相対位相を入れる. 
+$A_{k, n}$に同値関係$\sim$を
+$$
+	A \sim B \Leftrightarrow \text{正則な$k \times k$実数行列$G$が存在して$A = GB$}
+$$
+と定義する. $G_{k,n}:= A_{k, n}/\sim$と書き実グラスマン多様体と呼ぶ. $G_{k,n}$に商位相を入れるとき, $G_{k,n}$はハウスドルフ空間であることを示せ. 
+
+%\hspace{-22pt}以下の問題は第8回の演習問題に入りきらなかった内容である. 解答の際に第8回以降で扱う内容を用いて良い
+
+
+ \end{enumerate}
+ 
+ \vspace{11pt}
+\begin{wrapfigure}{r}[0pt]{0.2\textwidth}
+  \centering
+ \includegraphics[height=20mm, width=20mm]{genetopo.png}
+\end{wrapfigure}
+演習の問題は授業ページ(\url{https://masataka123.github.io/2022_winter_generaltopology/})にもあります. 
+右下のQRコードからを読み込んでも構いません.
+
+
+\begin{comment}
+
+\item $^{*}$ $S^2$と$\C\mathbb{P}^1$は同相であることを示せ.\footnote{コンパクトのところで習う定理を用いて良い. \ref{so3}も同様.}
+
+\item \label{so3} $^{**}$ 3次特殊直交群$SO(3,\R)$を$ 3\times 3$行列$G$で$^{t}GG=E$かつ$\det(G)=1$なる行列全体の集合とし, $\R^{9}$の部分集合とみなすことで$SO(3,\R)$に$\R^{9}$の相対位相を入れる. 
+$SO(3,\R)$と$\R\mathbb{P}^{3}$が同相であることを示せ.
+
+\item 次の問いに答えよ
+\begin{enumerate} 
+\item 位相空間の間の連続写像$f : T \rightarrow X$であって, $T$はハウスドルフだが$f(T)$はハウスドルフでない例を構成せよ.ただし$f(T)$には$X$の相対位相を入れる. 
+\item 位相空間の間の連続写像$f,g : T \rightarrow X$であって, ${\rm Ker}(f,g) = \{ t \in T | f(t) =g(t)\}$は$T$の閉集合ではない例を構成せよ. 
+\item ハウスドルフ空間の間の写像$f : T \rightarrow X$であって, $f$は連続ではないが$\{ (t,x) \in T \times X | f(t) =x\}$は$T \times X$の閉集合である例を構成せよ.
+\end{enumerate}
+\begin{enumerate}
+	\item $\pi:\C^2 \setminus \{ 0\} \rightarrow  \C\mathbb{P}^1$を商写像とする. あるコンパクト集合$A\subset \C^2 \setminus \{ 0\}$があって$\pi(A)=\C\mathbb{P}^1$となることを示せ. 特に$\C\mathbb{P}^1$はコンパクトである.
+	\item 全単射$f :  \C\mathbb{P}^1 \rightarrow S^2$で$f \circ \pi$が連続になるものを構成せよ. 
+	\item $f$は連続であることを示せ.
+	\item $f$が同相写像であることを示せ.
+\end{enumerate}
+$M(n+1, \R)$を$(n+1) \times (n+1)$行列の集合とし, $M(n+1, \R) $を$\R^{(n+1)^2}$と同一視して位相を入れる. 
+$\sigma : \R^{n+1} \setminus \{0\} \rightarrow  M(n+1, \R) $を次で定める:
+$$
+\begin{matrix}
+\sigma : & \R^{n+1} \setminus \{0\} &\rightarrow & M(n+1, \R) \\
+&(x_1, \ldots, x_{n+1})&\mapsto & 
+\frac{1}{x_{1}^{2} + \cdots + x_{n+1}^{2} }
+ \begin{pmatrix}
+ x_{1}^{2} & x_1x_2& \cdots&x_1x_{n+1} \\ 
+x_2x_1& x_{2}^{2}& \cdots&x_2x_{n+1} \\ 
+\vdots &\vdots& \cdots& \vdots \\ 
+x_{n+1}x_1&  x_{n+1}x_2& \cdots&x_{n+1}^{2} \\ 
+\end{pmatrix}
+\end{matrix}
+$$
+%次の問いに答えよ.
+\begin{enumerate}
+\item  $\sigma$は連続単射$\tilde{\sigma} : \R\mathbb{P}^{n} \rightarrow M(n+1, \R)$を引き起こすことをしめせ.\footnote{つまり$\tilde{\sigma}\circ \pi = \sigma$($\pi$は問6.6のようにとる)が成り立つ連続単射$\tilde{\sigma} $の存在を示してください.}
+\item $\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ. \footnote{この示し方はそこまで有名ではない. 他の方法でハウスドルフ性を示せる場合はそれを発表しても良い.}
+\end{enumerate}
+
+ \begin{figure}[htbp]
+\begin{flushright}
+ \includegraphics[height=17mm, width=17mm]{genetopo.png}
+ \caption*{}
+\end{flushright}
+\end{figure}
+
+\newpage
+
+\vspace{11pt}	
+%\newpage
+\hspace{-33pt} $\bullet$ あまり良くない問題集 
+%\hspace{-11pt}　
+
+以下の問題は個人的には興味があるが, 優先度が低くそうな問題たちである.\footnote{もし試験とかにでたらすみません. ただ正直いうとハウスドルフ以外の分離公理はあんまり重要ではない気がします(私も復習するまで忘れてました).}
+暇で余裕がある人はやってみてください. \footnote{位相に関してはかなり多くの概念や性質があり, それぞれ反例も知られている. 「\text{Counterexamples in Topology}」という本に性質と反例が網羅されている. 最近だと$\pi$-baseというホームページが有用である. 調べてみると結構面白い.}
+
+
+\item 位相空間$(X, \mathscr{O})$について, $X$が$T_3$空間であるとは$X$が正則かつ$T_1$空間とする.
+$T_4$空間であるとは$X$が正規かつ$T_1$空間とする. 次の問いに答えよ
+	\begin{enumerate}
+	%\item $T_4$ならば$T_3$, $T_3$ならばハウスドルフ空間($T_2$空間)であることをそれぞれ示せ. (特に$T_4$空間は正規ハウスドルフと同値である.)
+	%\item 距離空間$(X,d)$は$T_{4}$であることを示せ.
+	%\item 上限位相はハウスドルフ空間であるが$T_3$空間ではないことを示せ.
+	\item $T_3$ならばハウスドルフ空間($T_2$空間)であることを示せ. また$T_2$だが$T_3$でない例をあげよ.
+	\item $T_4$ならば$T_3$を示せ. また$T_3$だが$T_4$でない例をあげよ.
+	\item  距離空間$(X,d)$は$T_{4}$であることを示せ. また$T_4$だが距離化可能でない例をあげよ.
+	\end{enumerate}
+
+
+\item $X = \{ 1,2,3\}$とする.
+	\begin{enumerate}
+	\item $X$の位相$\mathscr{O}$で正規かつ正則だが$T_1$でないものを構成せよ
+	\item $X$の位相$\mathscr{O}$で正規であるが正則でも$T_1$でもないものを構成せよ
+	\end{enumerate}
+
+\item 位相空間$(X, \mathscr{O})$について, $X$が$T_{2\frac{1}{2}}$空間であるとは任意の$a, b \in X$について, ある$U, V \in \mathscr{O}$があって$a \in U, b \in V, \overline{U} \cap \overline{V} = \varnothing $となることとする. 次の問いに答えよ
+	\begin{enumerate}
+	\item $T_3$ならば$T_{2\frac{1}{2}}$, $T_{2\frac{1}{2}}$ならばハウスドルフ空間($T_2$空間)であることをそれぞれ示せ. 
+	\item $T_2$だが$T_{2\frac{1}{2}}$でない例をあげよ.
+	\end{enumerate}
+
+\end{comment}
+
+
+
+
+
+
+ \end{document}
