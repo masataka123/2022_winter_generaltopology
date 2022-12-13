@@ -86,13 +86,13 @@
 
 - (2022/12/06). 休講
 
-- 第8回 (2022/12/13). [第7回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/7_分離公理.pdf) 
+- 第8回 (2022/12/13). 分離公理(主にハウスドルフ) [第7回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/7_分離公理.pdf) 
 
-- 第9回 (2022/12/20). [第8回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/8_コンパクト.pdf) 
+- 第9回 (2022/12/20). コンパクト [第8回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/8_コンパクト.pdf) 
 
-- 第10回 (2023/01/10). [第9回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/9_連結.pdf) 
+- 第10回 (2023/01/10). 連結 [第9回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/9_連結.pdf) 
 
-- 第11回 (2023/01/17). [第10回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/10_距離空間の完備化.pdf) 
+- 第11回 (2023/01/17). 距離空間の完備化 [第10回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/10_距離空間の完備化.pdf) 
 
 - 第12回 (2023/01/24). 配布したプリントはありません.
 
