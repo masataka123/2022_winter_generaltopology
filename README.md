@@ -68,7 +68,7 @@
 
 - 第4回 (2022/10/25). 開基と基本近傍系 [第4回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/4_開基と基本近傍系.pdf) 
 
- <u>次回解答予定 問 4.4 残っている問題:  問 4.1, 4.5, 4.8, 4.10</u>
+ <u>残っている問題:  問 4.1, 4.4, 4.5, 4.8, 4.10</u>
 
 (2022/10/25 訂正: 問4.12 開基を定義する際に用いられるaは0ではないとします. 上のバージョンで訂正いたしました. )
 
@@ -80,7 +80,7 @@
 
 - 第6回 (2022/11/08). 商位相 [第6回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/6_商位相.pdf) 
 
- <u>次回解答予定 問 6.6. 残っている問題: 6.1, 6.3, 6.7, 6.8</u>
+ <u>残っている問題: 6.1, 6.3, 6.7, 6.8</u>
 
 (2022/11/08 訂正: 問6.6(b) f_iの定義を修正いたしました. )
 
@@ -92,9 +92,11 @@
 
 - 第8回 (2022/12/13). 分離公理(主にハウスドルフ) [第7回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/7_分離公理.pdf) 
 
- <u>次回解答予定 問 7.1(距離空間), 7.2, 7.3, 7.6. 残っている問題: 7.4, 7.5, 7.7-7.12</u>
+ <u>次回解答予定 問 7.7, 7.8, 7.10, 7.12. 残っている問題: 7.1, 7.3, 7.4, 7.5, 7.9, 7.11</u>
  
 - 第9回 (2022/12/20). コンパクト [第8回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/8_コンパクト.pdf) 
+
+ <u>次回解答予定 問 8.1(密着位相), 8.2 残っている問題: 8.1, 8.3-8.10, 8.12, 8.13 </u>
 
 - 第10回 (2023/01/10). 連結 [第9回演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/9_連結.pdf) 
 
